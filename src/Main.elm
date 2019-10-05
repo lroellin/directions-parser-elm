@@ -20,7 +20,7 @@ maxAbsoluteWaypoints =
 
 
 mobileWaypointsMessage =
-    "Mobile browsers: ore than 3 waypoints are truncated"
+    "Mobile browsers: more than 3 waypoints are truncated"
 
 
 absoluteWaypointsMessage =
