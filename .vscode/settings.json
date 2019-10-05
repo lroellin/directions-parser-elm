@@ -1,0 +1,4 @@
+{
+  "elm.compiler": "/usr/local/bin/elm-app",
+  "elm.makeCommand": "/usr/local/bin/elm-app make"
+}
