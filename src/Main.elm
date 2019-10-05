@@ -5,6 +5,7 @@ import Html exposing (Html, a, button, div, form, h1, h2, img, label, li, p, tex
 import Html.Attributes exposing (for, href, id, rows, src, target, value, class)
 import Html.Events exposing (onClick, onInput)
 import Url.Builder exposing (crossOrigin, int, string)
+import List.Extra exposing (last)
 
 
 
@@ -140,6 +141,7 @@ linkTarget list =
         [ int "api" 1
         , linkOrigin list
         , linkWaypoints list
+        , linkDestination list
         ]
 
 
@@ -160,7 +162,21 @@ linkWaypoints list =
             string "waypoints" ""
 
         _ :: waypoints ->
-            string "waypoints" (String.join "|" waypoints)
+            case List.Extra.init (waypoints) of 
+
+                Nothing -> string "waypoints" ""
+
+                Just waypointss -> 
+                    string "waypoints" (String.join "|" waypointss)
+
+linkDestination : List String -> Url.Builder.QueryParameter
+linkDestination list =
+    case (last list) of
+        Nothing ->
+            string "destination" ""
+
+        Just a ->
+            string "destination" a
 
 
 main : Program () Model Msg
@@ -171,3 +187,5 @@ main =
         , update = update
         , subscriptions = always Sub.none
         }
+
+
